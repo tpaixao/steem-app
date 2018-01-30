@@ -15,6 +15,10 @@ source ./steem/bin/activate
 
 
 ### steem-js
+
+
+
 ```
 sudo npm install --save steem
+sudo npm install http-server -g
 ```
