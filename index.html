@@ -1,0 +1,88 @@
+<html>
+	<head>
+		<title></title>
+		<script src="http://cdn.steemjs.com/lib/latest/steem.min.js"></script>
+		<script>
+			<!--function setupTestNet(){-->
+				steem.config.set('websocket','wss://testnet.steem.vc')
+				steem.config.set('address_prefix', 'STX')
+				steem.config.set('chain_id', '79276aea5d4877d9a25892eaa01b0adf019d3e5cb12a97478df3298ccdd01673')
+			<!--};-->
+
+			steem.api.getAccounts(['tiago', 'test'], function(err, response){
+    console.log(err, response);
+});
+		</script>
+	</head>
+
+<body>
+
+	Username: <input id="username" type="text"><br/>
+	Posting Key: <input id="postingKey" type="password" size="65"></br>
+	Title: <input id="title" type="text"><br/>
+	Article test:<br/>
+	<textarea id="article"></textarea>
+	<input id="postIt" type="button" value="Post It!" onClick="postArticle">
+	<br/>
+	<input id="getkeys" type="button" value="Key Reference"> 
+	<p id="keys"></p>
+
+</body>
+
+		<script>
+				//var keyref = steem.api.getKeyReferences('posting');//function (err,result) console.log);
+				//getElementById('keys').innerHTML = "testing";
+				//console.log(keyref);
+
+			var but = document.getElementById('getkeys');
+			but.addEventListener('click',function(){
+				var keyref = steem.api.getKeyReferences('paixao');//function (err,result) console.log);
+				document.getElementById('keys').innerHTML = keyref;
+				console.log(keyref);
+		} )
+
+			<!--but = document.getElementById('postIt');-->
+			<!--but.addEventListener('click',function(){-->
+				<!--var username  = document.getElementById('username').value;-->
+				<!--var postingkey  = document.getElementById('postingKey').value;-->
+				<!--var title  = document.getElementById('title').value;-->
+				<!--var body = document.getElementById('article').value;-->
+
+				<!--console.log(username)-->
+				<!--console.log(title)-->
+				<!--console.log(body)-->
+
+			<!--} )-->
+
+			function postArticle(){
+				var username  = document.getElementById('username').value;
+				var postingkey  = document.getElementById('postingKey').value;
+				var title  = document.getElementById('title').value;
+				var body = document.getElementById('article').value;
+
+				console.log(username)
+				console.log(title)
+				console.log(body)
+
+				//Submit it:
+				<!--var res = steem.broadcast.comment(-->
+				<!--postingkey,-->
+				<!--'',//author-->
+				<!--'test',//tag-->
+				<!--username,-->
+					<!--'my-first-test-post',//permalink-->
+					<!--title,-->
+					<!--body,-->
+					<!--{app: 'testing'}//JSON metadata-->
+				<!--);-->
+				<!--console.log(res);-->
+			};
+
+			function getKeyReference(){
+				var keyref = steem.api.getKeyReferences('posting');//function (err,result) console.log);
+				getElementById('keys').innerHTML = keyref;
+				console.log(keyref);
+		};
+		</script>
+
+</html>
