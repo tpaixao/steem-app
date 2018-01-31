@@ -17,7 +17,14 @@ source ./steem/bin/activate
 
 
 activating the testnet:
-```
+```python
+import steembase
+import steem
+steembase.chains.known_chains['STEEM'] = {
+    'chain_id': '79276aea5d4877d9a25892eaa01b0adf019d3e5cb12a97478df3298ccdd01673',
+    'prefix': 'STX', 'steem_symbol': 'STEEM', 'sbd_symbol': 'SBD', 'vests_symbol': 'VESTS'
+}
+client = steem.Steem(['https://testnet.steem.vc'])
 ```
 
 ### setting up steem-js
