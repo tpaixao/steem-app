@@ -1,0 +1,23 @@
+<h1 id="steem-environment">STEEM environment</h1>
+<h2 id="setting-up">Setting up</h2>
+<h3 id="setting-up-python">setting up python</h3>
+<p>we require python3.6. For Linux Mint this could be a problem (install Anaconda)</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">apt</span> install virtualenv
+<span class="ex">pip3</span> install -U git+git://github.com/Netherdrake/steem-python</code></pre></div>
+<p>to activate the environment:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">source</span> ./steem/bin/activate</code></pre></div>
+<p>activating the testnet:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> steembase
+<span class="im">import</span> steem
+steembase.chains.known_chains[<span class="st">&#39;STEEM&#39;</span>] <span class="op">=</span> {
+    <span class="st">&#39;chain_id&#39;</span>: <span class="st">&#39;79276aea5d4877d9a25892eaa01b0adf019d3e5cb12a97478df3298ccdd01673&#39;</span>,
+    <span class="st">&#39;prefix&#39;</span>: <span class="st">&#39;STX&#39;</span>, <span class="st">&#39;steem_symbol&#39;</span>: <span class="st">&#39;STEEM&#39;</span>, <span class="st">&#39;sbd_symbol&#39;</span>: <span class="st">&#39;SBD&#39;</span>, <span class="st">&#39;vests_symbol&#39;</span>: <span class="st">&#39;VESTS&#39;</span>
+}
+client <span class="op">=</span> steem.Steem([<span class="st">&#39;https://testnet.steem.vc&#39;</span>])</code></pre></div>
+<h3 id="setting-up-steem-js">setting up steem-js</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> npm install --save steem
+<span class="fu">sudo</span> npm install http-server -g</code></pre></div>
+<p>switching to the testnet</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="va">steem</span>.<span class="va">config</span>.<span class="at">set</span>(<span class="st">&#39;websocket&#39;</span><span class="op">,</span><span class="st">&#39;wss://testnet.steem.vc&#39;</span>)
+<span class="va">steem</span>.<span class="va">config</span>.<span class="at">set</span>(<span class="st">&#39;address_prefix&#39;</span><span class="op">,</span> <span class="st">&#39;STX&#39;</span>)
+<span class="va">steem</span>.<span class="va">config</span>.<span class="at">set</span>(<span class="st">&#39;chain_id&#39;</span><span class="op">,</span> <span class="st">&#39;79276aea5d4877d9a25892eaa01b0adf019d3e5cb12a97478df3298ccdd01673&#39;</span>)</code></pre></div>

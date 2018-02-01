@@ -1,0 +1,17 @@
+tiago 
+ paixao
+Private posting key: 5KMsvVStX5kD4JEkbe9rsrYXEfddf1FfgDRQZ5V8o2g6acd5EBL
+Public posting key: STM6ab5JAdAFri3h5yhMbBhHfdSxvaCVANPJS5EPUPrBbkP71UBzX
+
+Private active key: 5KWpPrg8wa4mPPA9711vTqoxoVAJmL9GMGSeMHo9ucypP26dJwG
+Public active key: STM6cs9f8TehechxwbzbVC9DimUGwmm2BrDLDfDrhfyx2m1ysby9e
+
+Private owner key: 5KUTHi9p8fA5ZSppLE5zcjLg5nbgLQiUktXYUmqQ5bzXY4RGCNz
+Public owner key: STM6Phb4ctYqnA5nBRLddFzpj7vd1YCb7bbc4V1WVCUXE6nwgujvc
+
+Private memo key: 5KJCoixTYPUnZBhPcAiesKBtuAf1GN6kTKUkZ2j6eknZSP9JfWQ
+Public memo key: STM5bytvVvGieG6vaB4e6ZQukTSBdHFJUQwbQEqbne1DYR1qBWndb
+
+Private foobar key: 5JFQJCKcMs8eSKzjucC8djsayBGANddairAEJnHtAto8SbvdihF
+Public foobar key: STM6WAgLDyNcoo49xndFoqRadk1XYN7Rr7SXeEgyruWL8XfUn8pym
+
