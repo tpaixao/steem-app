@@ -22,11 +22,10 @@
 	Title: <input id="title" type="text"><br/>
 	Article test:<br/>
 	<textarea id="article"></textarea>
-	<input id="postIt" type="button" value="Post It!" onClick="postArticle">
+	<input id="postIt" type="button" value="Post It!" >
 	<br/>
-	<input id="getkeys" type="button" value="Key Reference"> 
-	<p id="keys"></p>
-
+	<input id="get_article" type="button" value="Key Reference"> 
+	<p id="show_area"></p>
 </body>
 
 		<script>
@@ -34,12 +33,12 @@
 				//getElementById('keys').innerHTML = "testing";
 				//console.log(keyref);
 
-			var but = document.getElementById('getkeys');
-			but.addEventListener('click',function(){
-				var keyref = steem.api.getKeyReferences('paixao');//function (err,result) console.log);
-				document.getElementById('keys').innerHTML = keyref;
-				console.log(keyref);
-		} )
+	//		var but = document.getElementById('getkeys');
+	//		but.addEventListener('click',function(){
+	//			var keyref = steem.api.getKeyReferences('paixao');//function (err,result) console.log);
+	//			document.getElementById('keys').innerHTML = keyref;
+	//			console.log(keyref);
+	//	} )
 
 			<!--but = document.getElementById('postIt');-->
 			<!--but.addEventListener('click',function(){-->
@@ -54,6 +53,7 @@
 
 			<!--} )-->
 
+
 			function postArticle(){
 				var username  = document.getElementById('username').value;
 				var postingkey  = document.getElementById('postingKey').value;
@@ -64,25 +64,42 @@
 				console.log(title)
 				console.log(body)
 
+				document.getElementById('show_area').innerHTML = username + title + body;
+
 				//Submit it:
-				<!--var res = steem.broadcast.comment(-->
-				<!--postingkey,-->
-				<!--'',//author-->
-				<!--'test',//tag-->
-				<!--username,-->
-					<!--'my-first-test-post',//permalink-->
-					<!--title,-->
-					<!--body,-->
-					<!--{app: 'testing'}//JSON metadata-->
-				<!--);-->
-				<!--console.log(res);-->
+				var res = steem.broadcast.comment(
+				postingkey,
+				'',//author - no author means top post
+				'test',//tag
+				username,
+					'tiago-first-test-post',//permalink
+					title,
+					body,
+					'',//JSON metadata
+					function(err,result){
+						if(err)
+							alert('Error: '+err + "result: "+result);
+						else
+							alert('Success!')
+					}
+				);
 			};
 
-			function getKeyReference(){
-				var keyref = steem.api.getKeyReferences('posting');//function (err,result) console.log);
-				getElementById('keys').innerHTML = keyref;
-				console.log(keyref);
+
+			function showArticle(){
+				document.getElementById('show_area').innerHTML = "";
+				var article = steem.api.getContent('tiago','tiago-first-test-post',(err,result) => {console.log(err);console.log(result);return result;} );
+				document.getElementById('show_area').innerHTML = article;
+				console.log(article);
 		};
+
+
+			//link buttons with functions
+			var but = document.getElementById('postIt');
+			but.addEventListener('click',postArticle)
+
+			var but2 = document.getElementById('get_article');
+			but2.addEventListener('click',showArticle)
 		</script>
 
 </html>
