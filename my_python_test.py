@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from steembase.account import PasswordKey
 import steembase
+from steembase.account import PasswordKey
 import steem
 
 steembase.chains.known_chains['STEEM'] = {
@@ -26,17 +26,47 @@ key_types = ['posting','active','owner','memo','foobar']
 
 print(account,'\n',password)
 
-for key_type in key_types:
-    private_key = PasswordKey(account, password, key_type).get_private_key()
-    public_key = private_key.pubkey
+# for key_type in key_types:
+    # private_key = PasswordKey(account, password, key_type).get_private_key()
+    # public_key = private_key.pubkey
 
-    print('Private ' + key_type + ' key: ' + str(private_key))
-    print('Public ' + key_type + ' key: ' + str(public_key) + '\n')
+    # print('Private ' + key_type + ' key: ' + str(private_key))
+    # print('Public ' + key_type + ' key: ' + str(public_key) + '\n')
 
 # try to post something wth these keys that do NOT seem to be working with steem-js
 
-s = steem.Steem(keys=['5J8UmwoWoySnkjfdrR9BDLjPVAmsDfof6ovqXVZXCfM3ZYZxVSA', '5KGdtFG3Bm3iaeVKhfJNRSEURchLNse7iRzvL4RGTB5q1hTBmgJ'])
+s = steem.Steem(['https://testnet.steem.vc'],keys=['5J8UmwoWoySnkjfdrR9BDLjPVAmsDfof6ovqXVZXCfM3ZYZxVSA'])
 
-s.commit.post('','testing body','tiagotest','permalink-test-title','')
+# title='this is the title'
+# body = 'this is the body'
+# author='tiagotest'
+# permlink = 'this-is-the-title'
+# reply_indentifier = ''
+# json_metadata = None
+# comment_options = None
+# community = None
+# tags = ['tag1','tag2'] #tags NEEDs to be set
+# beneficiaries = []
+# self_vote = False
+
+# s.commit.post(title,body,author,permlink,reply_indentifier,json_metadata,comment_options,community,tags)
+
+
+title='this is the reply'
+body = 'this is the body of the reply'
+author='tiagotest'
+permlink = 'this-is-the-reply'
+reply_indentifier = '@tiagotest/this-is-the-title'
+json_metadata = None
+comment_options = None
+community = None
+tags = ['tag1','tag2'] #tags NEEDs to be set
+beneficiaries = []
+self_vote = False
+
+s.commit.post(title,body,author,permlink,reply_indentifier,json_metadata,comment_options,community,tags)
+
+
+# s.commit.post(title,body,permlink,reply_indentifier,json_metadata,comment_options,community,tags,beneficiaries,self_vote)
 
 
