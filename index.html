@@ -54,6 +54,10 @@
 			<!--} )-->
 
 
+			var keys = steem.auth.getPrivateKeys('tiagotest','tiagotest',['posting']);
+
+			alert(keys['posting'])
+
 			function postArticle(){
 				var username  = document.getElementById('username').value;
 				var postingkey  = document.getElementById('postingKey').value;
@@ -67,23 +71,20 @@
 				document.getElementById('show_area').innerHTML = username + title + body;
 
 				//Submit it:
-				var res = steem.broadcast.comment(
-					postingkey,
-					'',//author - no author means top post
-					'test',//tag
-					username,
-					'tiago-first-test-post',//permalink
-					title,
-					body,
-					'',//JSON metadata
-					function(err,result){
-						if(err)
-							alert('Error: '+err + "result: "+result);
-						else
-							alert('Success!')
-					}
-				);
-			};
+				var postingkey = '5J8UmwoWoySnkjfdrR9BDLjPVAmsDfof6ovqXVZXCfM3ZYZxVSA';
+				var parent_author = '';
+				var parentPermlink = 'testing';//if top post needs to be the category...
+				var author = 'tiagotest';
+			  var permlink = 'another-first-post';
+				var title = 'Another first post';
+				var body = 'this is the body of my second post';
+				var jsonMetadata = {};
+				steem.broadcast.comment(postingkey, parent_author, parentPermlink, author, permlink, title, body, jsonMetadata, function(err, result) {
+					alert(err);
+					alert(result)
+  				//console.log(err, result);
+				})
+			}
 
 
 			function showArticle(){
